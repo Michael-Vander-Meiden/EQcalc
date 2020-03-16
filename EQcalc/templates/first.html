@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title> first </title>
+</head>
+<body>
+	<div>
+		<form action = 'first' method="post">
+			{% csrf_token %}
+			<p>Select Variable</p>
+			<input type="radio" name="var" value="vf"> Final Velocity <br>
+			<input type="radio" name="var" value="vi"> Initial Velocity <br>
+			<input type="radio" name="var" value="a"> Acceleration <br>
+			<input type="radio" name="var" value="t"> Time <br>
+			<input type="submit">
+
+
+		</form>
+	</div>
+
+	<br>
+
+
+	<h3>{{visual}}</h3>
+
+	<br>
+	
+
+	<div>
+		<form action = 'first' method = 'post'>
+			{% csrf_token %}
+			{% for input in inputbox %}
+			<input type="number" name="val{{ forloop.counter }}"> {{input}} <br>
+			<!-- <h5>{{ forloop.counter }}</h5> -->
+			{% endfor %}
+			<input type="hidden" name="refin" value = '{{ refout }}'>
+			<input type="submit">
+
+		</form>
+
+
+	</div>
+
+	<div>
+		
+		<h1>{{resultout.0}} {{resultout.1}}  </h1>
+		
+	</div>
+
+
+<!-- <h1> num:{{ num }}</h1>
+<h1> val: {{ vals }}</h1> -->
+
+</body>
+</html>

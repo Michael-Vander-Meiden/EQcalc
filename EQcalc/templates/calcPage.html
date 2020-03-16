@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Calculations</title>
+</head>
+<body>
+	<!-- <h1>{{paramList}}</h1> -->
+
+	<form method = 'POST'>
+		{% csrf_token %}
+		{% for param in paramList %}
+		<input type="number" name="{{forloop.counter}}" required = 'required'>
+		<label>{{param}}</label><br>
+		{% endfor %}
+		<input type="submit" name="submit">
+
+	</form>
+<!-- 
+	<h1>{{one}}</h1>
+	<h1>{{out}}</h1>
+	<h1>{{newForm}}</h1> -->
+	<h1>{{result}}</h1>
+</body>
+</html>

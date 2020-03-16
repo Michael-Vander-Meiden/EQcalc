@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Equations</title>
+</head>
+<body>
+	<h1>Formulas</h1>
+
+	<form action='forms' method='POST' >
+		{% csrf_token %}
+		{% for equation in equations %}
+		
+		<input type='radio' name ='equation' value='{{equation.name}}' required = 'required'>
+		<label for='equation'>{{equation.name}}</label><br>
+		
+
+		{% endfor %}
+		<input type="submit" name="submit" value="send">
+
+
+
+	</form>
+
+
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Forms</title>
+</head>
+<body>
+
+	
+
+	<form action = 'calculations' method = 'GET'>
+		<!-- {% csrf_token %} -->
+		{% for form in formlist %}
+		<input type="radio" name="form" value = '{{ form.1 }}' required = 'required'>
+		<label>{{ form.0 }} = {{ form.1 }}</label><br>
+		{%endfor%}
+		<input type="submit" name="submit" value = 'choose'>
+	</form>
+	
+	
+	
+</body>
+</html>
