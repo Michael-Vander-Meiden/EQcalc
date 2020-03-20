@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     # my apps
     'variables.apps.VariablesConfig',
     'formulas.apps.FormulasConfig',
+    'equations.apps.EquationsConfig',
 ]
 
 MIDDLEWARE = [
