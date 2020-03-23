@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from variables.models import Variable
+from .models import Equation
 
 # Create your views here.
 
@@ -31,4 +32,8 @@ def calcVal(id, values):
 		result = F/m
 		return result
 
-	
+
+def base(request):
+	equations = Equation.objects.all()
+
+	return {'equations': equations}

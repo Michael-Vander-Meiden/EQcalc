@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>EQcalc</title>
+</head>
+
+<h1>{{equations}}</h1>
+<div>
+	<select>
+		{% for eq in equations %}
+		<h1>eq.formulaID</h1>
+		{% if eq.inversion == 1 %}
+			{{eq}}
+			<option value ='{{eq.name}}'> {{eq.name}} </option>
+		{% endif %}
+		{% endfor %}
+
+	</select>
+
+</div>
+
+<body>
+{% block content %}
+{% endblock %}
+</body>
+</html>
