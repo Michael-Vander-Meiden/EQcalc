@@ -6,18 +6,29 @@
 
 <h1>{{equations}}</h1>
 <div>
-	<select>
-		{% for eq in equations %}
-		<h1>eq.formulaID</h1>
-		{% if eq.inversion == 1 %}
-			{{eq}}
-			<option value ='{{eq.name}}'> {{eq.name}} </option>
-		{% endif %}
-		{% endfor %}
+	<form form = 'eqform' method = 'POST'>
+		{% csrf_token %}
+		<select name = 'eqform'>
+			{% for eq in equations %}
+			{% if eq.inversion == 1 %}
+				{{eq}}
+				<option value ='{{eq.name}}'> {{eq.name}} </option>
+			{% endif %}
+			{% endfor %}
 
-	</select>
+		</select>
+	
+		<input type='submit' name='submit'>
+	</form>
 
 </div>
+
+<div>
+	
+	<h1>{{form}}</h1>
+	<h1>{{eqout}}</h1>
+</div>
+
 
 <body>
 {% block content %}

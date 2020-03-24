@@ -1,4 +1,5 @@
 from django.shortcuts import render
+
 from variables.models import Variable
 from .models import Equation
 
@@ -36,4 +37,16 @@ def calcVal(id, values):
 def base(request):
 	equations = Equation.objects.all()
 
-	return {'equations': equations}
+	form = request.POST.get('eqform', '')
+	if form != '':
+		formulaID = Equation.objects.get(name=form).formulaID
+		eqlist = Equation.objects.filter(formulaID=formulaID)
+		eqout = []
+		for eq in eqlist:
+			eqout.append((eq.param, eq.formulaID, eq.inversion))
+
+	else:
+		eqout = ''
+
+
+	return {'equations': equations, 'form':form, 'eqout':eqout}
