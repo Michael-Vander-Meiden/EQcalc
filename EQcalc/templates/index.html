@@ -24,6 +24,40 @@
 
 
 {% block content %}
-	<h1>Index</h1>
+	<h1>Index {{context}}</h1>
 
+<div>
+
+	{% for eq in eqlist%}
+		<a href="/{{eq.formulaID}}/{{eq.inversion}}">{{eq.name}}</a>
+	{% endfor %}
+
+	<br>
+	<br>
+
+	{% for inv in invlist%}
+		{{inv.name}}
+	{% endfor %}
+
+
+</div>
+
+<div>
+	<form form = 'eqform' method = 'GET'>
+		<!-- {% csrf_token %} -->
+		<input type="number" name="1"><br>
+		<input type="number" name="2"><br>
+		<input type="number" name="3"><br>
+		<input type="hidden" name="formulaID" value="{{invlist.0.formulaID}}">
+		<input type="hidden" name="inversion" value="{{invlist.0.inversion}}">
+		<input type="submit" name="submit">
+	</form>
+
+</div>
+
+
+<h1>{{eq}}</h1>
+<h1>{{values}}</h1>
+<h1>{{result}}</h1>
+<h1>{{one}}</h1>
 {% endblock %}
