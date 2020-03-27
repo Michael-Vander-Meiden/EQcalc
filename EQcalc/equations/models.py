@@ -5,6 +5,7 @@ from django.db import models
 class Equation(models.Model):
 	name = models.CharField(max_length=100,null=True)
 	param = models.CharField(max_length=100, null=True)
+	inputcount = models.IntegerField(null=True)
 	formulaID = models.IntegerField(null=True)
 	inversion = models.IntegerField(null=True)
 

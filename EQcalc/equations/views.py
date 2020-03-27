@@ -25,12 +25,12 @@ def index(request, **kwarg):
 	values = []
 	one = request.GET.get('1', 'empty')
 	two = request.GET.get('2', 'empty')
-	three = request.GET.get('3', 'empty')
+	
 	formulaID = int(request.GET.get('formulaID', False))
 	inversion = int(request.GET.get('inversion', False))
 	eqid = (formulaID, inversion)
 
-	for i in [one, two, three]:
+	for i in [one, two]:
 		if i != 'empty':
 			values.append(int(i))
 
@@ -70,25 +70,32 @@ def calcVal(eqid, values):
 		result = F/m
 		return result
 
+	if eqid == (2,1): #Momentum = Mass*Velocity
+		m = values[0]
+		v = values[1]
 
+		result = m*v
+		return result
+
+	if eqid == (2,2): #Mass = Momentum/Velocity
+		p = values[0]
+		v = values[1]
+
+		result = p/v
+		return result
+
+	if eqid == (2,3): #Velocity = Momentum/Mass
+		p = values[0]
+		m = values[1]
+
+		result = p/m
+		return result
 
 
 
 def base(request):
+	
 	equations = Equation.objects.all()
 
-	form = request.POST.get('eqform', '')
 
-	if form != '':
-		formulaID = Equation.objects.get(name=form).formulaID
-		eqlist = Equation.objects.filter(formulaID=formulaID)
-		#eqlist = Equation.objects.filter(formulaID=int(form)) #done with get instead of post
-		eqout = []
-		for eq in eqlist:
-			eqout.append((eq.name, eq.param, eq.formulaID, eq.inversion))
-
-	else:
-		eqout = ''
-		eqlist = ''
-
-	return {'equations': equations,'form':form, 'eqout':eqout, 'eqlist':eqlist}
+	return {'equations': equations}

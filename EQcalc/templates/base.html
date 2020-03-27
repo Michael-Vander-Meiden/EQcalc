@@ -1,33 +1,14 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html>
 <head>
 	<title>EQcalc</title>
+
+	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
 </head>
 
-<!-- <h1>{{equations}}</h1> -->
-<!-- <div>
-	<form form = 'eqform' method = 'POST' action="">
-		{% csrf_token %}
-		<select name = 'eqform'>
-			{% for eq in equations %}
-			{% if eq.inversion == 1 %}
-				{{eq}}
-				<option value ='{{eq.name}}'> {{eq.name}} </option>
-			{% endif %}
-			{% endfor %}
-
-		</select>
-		<input type="hidden" name="pag" value="POst">
-		<input type='submit' name='submit'>
-	</form>
-
-</div>
- -->
-<!-- <div>
-	
-	<h1>{{form}}</h1>
-	<h1>{{eqout}}</h1>
-</div> -->
+	<div class="sidenav">
 		
 		{% for eq in equations %}
 		{% if eq.inversion == 1 %}
@@ -36,7 +17,7 @@
 		{% endif %}
 		{% endfor %}
 		
-
+	</div>
 
 <body>
 {% block content %}

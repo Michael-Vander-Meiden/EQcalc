@@ -1,63 +1,49 @@
-<!-- <!DOCTYPE html>
-<html>
-<head>
-	<title>Select Formula</title>
-</head>
-<body>
-	<header>
-		<h1>Select Formula</h1>
-	</header>
 
-<div>
-	<ul>
-		<li><h3><a href="/first"> v_f = v_i + a*t </a></h3></li>
-		<li><h3><a href="/second"> x_f=x_0+v_0*t+0.5*a*t^2 </a></h3></li>
-		<li><h3><a href="/?eq=third"> v_f^2=v_0^2+2*a*(x_f-x_0) </a></h3></li>
-
-</div>
-
-
-
-</body>
-</html> -->
 {% extends 'base.html' %}
 
 
 {% block content %}
-	<h1>Index {{context}}</h1>
 
-<div>
-
+<div class='list'>
+	<h1>Choose Paramater To Solve For</h1>
+	<ul>
 	{% for eq in eqlist%}
-		<a href="/{{eq.formulaID}}/{{eq.inversion}}">{{eq.name}}</a>
+		<li><a href="/{{eq.formulaID}}/{{eq.inversion}}">{{eq.name}}</a></li>
 	{% endfor %}
-
-	<br>
-	<br>
-
-	{% for inv in invlist%}
-		{{inv.name}}
-	{% endfor %}
-
+	</ul>
+	
 
 </div>
 
-<div>
+{% if invlist|length %}
+
+<div class='submit'>
 	<form form = 'eqform' method = 'GET'>
 		<!-- {% csrf_token %} -->
-		<input type="number" name="1"><br>
-		<input type="number" name="2"><br>
-		<input type="number" name="3"><br>
+		<h2>Input Values</h2>
+		<h3>Solving for {{invlist.0.param}}</h3>
+
+		<input type="number" name="1" required = 'required'><br>
+		<input type="number" name="2" required = 'required'><br>
+		
+		
+
 		<input type="hidden" name="formulaID" value="{{invlist.0.formulaID}}">
 		<input type="hidden" name="inversion" value="{{invlist.0.inversion}}">
 		<input type="submit" name="submit">
 	</form>
 
 </div>
+{% endif %}
 
+{% if result %}
 
-<h1>{{eq}}</h1>
-<h1>{{values}}</h1>
-<h1>{{result}}</h1>
-<h1>{{one}}</h1>
+<div class = 'result'>
+
+	<h2>Result</h2>
+
+	<h2>{{invlist.0.param}} = {{result}}</h2>
+
+</div>
+{% endif %}
 {% endblock %}
