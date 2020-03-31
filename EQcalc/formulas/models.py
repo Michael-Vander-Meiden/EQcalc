@@ -1,5 +1,5 @@
 from django.db import models
-from variables.models import Variable
+
 
 
 #Create your models here.

@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # my apps
-    'variables.apps.VariablesConfig',
+    #'variables.apps.VariablesConfig',
     'formulas.apps.FormulasConfig',
     'equations.apps.EquationsConfig',
 ]

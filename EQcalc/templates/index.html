@@ -1,11 +1,14 @@
-
 {% extends 'base.html' %}
+
 
 
 {% block content %}
 
+
+
 <div class='list'>
-	<h1>Choose Paramater To Solve For</h1>
+	<h1>{{test}}</h1>
+	<h1>Choose Paramater To Solve For:</h1>
 	<ul>
 	{% for eq in eqlist%}
 		<li><a href="/{{eq.formulaID}}/{{eq.inversion}}">{{eq.name}}</a></li>
@@ -22,15 +25,19 @@
 		<!-- {% csrf_token %} -->
 		<h2>Input Values</h2>
 		<h3>Solving for {{invlist.0.param}}</h3>
+		{% for var in invlist.0.inputs.all %}
+		<input type="number" name="{{forloop.counter}}" required = 'required'>  {{var}} <br>
+		
 
-		<input type="number" name="1" required = 'required'><br>
-		<input type="number" name="2" required = 'required'><br>
+		{% endfor %}
+
+		
 		
 		
 
 		<input type="hidden" name="formulaID" value="{{invlist.0.formulaID}}">
 		<input type="hidden" name="inversion" value="{{invlist.0.inversion}}">
-		<input type="submit" name="submit">
+		<input type="submit" name="submit" value="Calculate">
 	</form>
 
 </div>
@@ -40,7 +47,6 @@
 
 <div class = 'result'>
 
-	<h2>Result</h2>
 
 	<h2>{{invlist.0.param}} = {{result}}</h2>
 

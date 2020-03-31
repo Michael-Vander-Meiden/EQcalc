@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from variables.models import Variable
+
 from formulas.models import Formula
 
 # Create your views here.
