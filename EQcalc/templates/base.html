@@ -13,7 +13,7 @@
 	<div class="sidenav">
 		
 		{% for eq in equations %}
-		{% if eq.inversion == 1 %}
+		{% if eq.inversion == 1 %} <!-- display only first inversion of eq in sidebar -->
 			
 			<a href ='/{{eq.formulaID}}'> {{eq.name}} </a><br>
 		{% endif %}

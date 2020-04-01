@@ -7,7 +7,7 @@
 
 
 <div class='list'>
-	<h1>{{test}}</h1>
+<!-- choosing inversion of equation coming from base. organized with dynamic url -->
 	<h1>Choose Paramater To Solve For:</h1>
 	<ul>
 	{% for eq in eqlist%}
@@ -18,22 +18,23 @@
 
 </div>
 
-{% if invlist|length %}
+<!-- renders block only if inversion selected from above and therefore, invlist is populated -->
+{% if invlist|length %} 
 
 <div class='submit'>
 	<form form = 'eqform' method = 'GET'>
-		<!-- {% csrf_token %} -->
 		<h2>Input Values</h2>
-		<h3>Solving for {{invlist.0.param}}</h3>
-		{% for var in invlist.0.inputs.all %}
+		<h3>Solving for {{invlist.0.param}}</h3> <!-- only one item in invlist .0 -->
+		{% for var in invlist.0.inputs.all %} <!-- printing variable labels. in order of database (not ideal) -->
 		<input type="number" name="{{forloop.counter}}" required = 'required'>  {{var}} <br>
-		
+		<!-- test to send unit information to back end (only numerator in this case) -->
+		<input type="hidden" name="varUnit{{forloop.counter}}" value = '{{var.numerator.all.0}}'>
 
 		{% endfor %}
 
 		
 		
-		
+		<!-- sending formulaID and inversion hidden to back end to find correct hardcoded solution -->
 
 		<input type="hidden" name="formulaID" value="{{invlist.0.formulaID}}">
 		<input type="hidden" name="inversion" value="{{invlist.0.inversion}}">
@@ -43,13 +44,26 @@
 </div>
 {% endif %}
 
-{% if result %}
+{% if result %} <!-- renders block only if result exists -->
 
 <div class = 'result'>
 
 
 	<h2>{{invlist.0.param}} = {{result}}</h2>
 
+	<!-- <h1>{{units}}</h1>
+	<h1>{{values1}}</h1>
+	<h1>{{valout}}</h1>
+	<h1>{{valout2}}</h1> -->
 </div>
+
+
 {% endif %}
 {% endblock %}
+
+
+
+
+
+
+
