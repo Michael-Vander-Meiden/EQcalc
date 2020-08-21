@@ -209,9 +209,40 @@ def calcVal(eqid, values): # hardcoded formulas for each formula and inversion f
 
 
 
-def base(request):
+def base(request): #base template. outputs all equations from DB
 	
 	equations = Equation.objects.all()
 
 
 	return {'equations': equations}
+
+
+
+''' ideally the input from the frontend would be all in one package as follow:
+	[[(var1, value1, unit1),(var2, value2, unit2), (var3...etc),],[(var, num, den)], [formulaID, Inversion]]
+	the first list contains inputed values with associated vars and units, the second
+	contains the output var and the requested num and den of the output units, and the third
+	contains the formulaID and inversion to select right hardcoded solution. this would be inputted into
+	preUnitConverter where the input vales are scaled by the appropraite unit conversions. the output
+	would then be [[(var1, value1),(var2, value2), (var3...etc),],[(var, num, den)], [formulaID, Inversion]]
+	same as initial input but without the unit inuput. this would then be inputted into the
+	calcVal function where the hardcoded calculation would be performed utilizing the inputted
+	formulaID and inversion. the output would then be [val, (var, num, den)], the calcualted
+	value, and the output variable numerator and denominator. Finally this is inputted into the
+	postUnitConverter outputting the final value. '''
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
